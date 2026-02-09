@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div style="max-width: 600px; margin: 2em auto; font-family: sans-serif;">
+    <h1>Contactez-nous</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% for flash_message in app.flashes('success') %}
+        <div style="color: #155724; background: #d4edda; border: 1px solid #c3e6cb; padding: 0.75em; border-radius: 4px; margin-bottom: 1em;">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/sites/Projet/src/Controller/ContactController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/sites/Projet/templates/contact/index.html.twig</code></li>
-    </ul>
+    {{ form_start(contactForm) }}
+        <div style="display: flex; gap: 1em; margin-bottom: 1em;">
+            <div style="flex: 1;">
+                {{ form_label(contactForm.fistname, null, {'label_attr': {'style': 'display: block; margin-bottom: 0.3em; font-weight: bold;'}}) }}
+                {{ form_widget(contactForm.fistname, {'attr': {'style': 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
+                {{ form_errors(contactForm.fistname) }}
+            </div>
+            <div style="flex: 1;">
+                {{ form_label(contactForm.lastname, null, {'label_attr': {'style': 'display: block; margin-bottom: 0.3em; font-weight: bold;'}}) }}
+                {{ form_widget(contactForm.lastname, {'attr': {'style': 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
+                {{ form_errors(contactForm.lastname) }}
+            </div>
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            {{ form_label(contactForm.email, null, {'label_attr': {'style': 'display: block; margin-bottom: 0.3em; font-weight: bold;'}}) }}
+            {{ form_widget(contactForm.email, {'attr': {'style': 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
+            {{ form_errors(contactForm.email) }}
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            {{ form_label(contactForm.subject, null, {'label_attr': {'style': 'display: block; margin-bottom: 0.3em; font-weight: bold;'}}) }}
+            {{ form_widget(contactForm.subject, {'attr': {'style': 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
+            {{ form_errors(contactForm.subject) }}
+        </div>
+
+        <div style="margin-bottom: 1em;">
+            {{ form_label(contactForm.message, null, {'label_attr': {'style': 'display: block; margin-bottom: 0.3em; font-weight: bold;'}}) }}
+            {{ form_widget(contactForm.message, {'attr': {'style': 'width: 100%; padding: 0.5em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; min-height: 150px;'}}) }}
+            {{ form_errors(contactForm.message) }}
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 0.7em; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 1em;">
+            Envoyer le message
+        </button>
+    {{ form_end(contactForm) }}
 </div>
 {% endblock %}
