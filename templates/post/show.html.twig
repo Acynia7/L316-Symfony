@@ -1,0 +1,21 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.content|raw }}</p>
+
+<h2>Commentaires</h2>
+{% for comment in comments %}
+    <div>
+        <p>{{ comment.content }}</p>
+        <form method="post" style="display:inline">
+            <input type="hidden" name="report_comment_id" value="{{ comment.id }}">
+            <button type="submit">Signaler</button>
+        </form>
+    </div>
+{% else %}
+    <p>Aucun commentaire pour le moment.</p>
+{% endfor %}
+
+<h3>Ajouter un commentaire</h3>
+{{ form_start(comment_form) }}
+{{ form_widget(comment_form) }}
+<button type="submit">Envoyer</button>
+{{ form_end(comment_form) }}
