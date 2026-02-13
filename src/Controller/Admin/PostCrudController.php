@@ -19,14 +19,6 @@ class PostCrudController extends AbstractCrudController
         return Post::class;
     }
 
-    public function createEntity(string $entityFqcn): Post
-    {
-        $post = new Post();
-        $post->setCreatedAt(new \DateTimeImmutable());
-
-        return $post;
-    }
-
     public function configureFields(string $pageName): iterable
     {
         return [
