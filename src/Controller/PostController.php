@@ -48,7 +48,9 @@ final class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setPost($post);
-            $comment->setIsValidated(false); // à valider par l'admin
+            $comment->setIsValidated(false);
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setAuthor($this->getUser());
             $em->persist($comment);
             $em->flush();
 

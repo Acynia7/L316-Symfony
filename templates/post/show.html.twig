@@ -1,21 +1,35 @@
 <h1>{{ post.title }}</h1>
 <p>{{ post.content|raw }}</p>
 
+<hr>
+
 <h2>Commentaires</h2>
 {% for comment in comments %}
-    <div>
+    <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+        <strong>{{ comment.author.pseudo }}</strong> <small>le {{ comment.createdAt|date('d/m/Y H:i') }}</small>
         <p>{{ comment.content }}</p>
+        
+        {# Formulaire de signalement #}
         <form method="post" style="display:inline">
             <input type="hidden" name="report_comment_id" value="{{ comment.id }}">
-            <button type="submit">Signaler</button>
+            <button type="submit" onclick="return confirm('Signaler ce commentaire ?')">Signaler</button>
         </form>
     </div>
 {% else %}
-    <p>Aucun commentaire pour le moment.</p>
+    <p>Aucun commentaire validé pour le moment.</p>
 {% endfor %}
 
-<h3>Ajouter un commentaire</h3>
-{{ form_start(comment_form) }}
-{{ form_widget(comment_form) }}
-<button type="submit">Envoyer</button>
-{{ form_end(comment_form) }}
+<hr>
+
+{# ZONE DE CONNEXION / FORMULAIRE #}
+{% if app.user %}
+    <h3>Ajouter un commentaire</h3>
+    {{ form_start(comment_form) }}
+        {{ form_widget(comment_form) }}
+        <button type="submit">Envoyer le commentaire</button>
+    {{ form_end(comment_form) }}
+{% else %}
+    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+        <p>Vous devez être <a href="{{ path('app_login') }}">connecté</a> pour laisser un commentaire.</p>
+    </div>
+{% endif %}
