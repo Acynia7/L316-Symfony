@@ -11,8 +11,12 @@ final class AboutController extends AbstractController
     #[Route('/about', name: 'app_about')]
     public function index(): Response
     {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('about/index.html.twig', [
-            'controller_name' => 'AboutController',
+            'user' => $user,
         ]);
     }
 }
