@@ -17,14 +17,6 @@ class ContactCrudController extends AbstractCrudController
         return Contact::class;
     }
 
-    public function createEntity(string $entityFqcn): Contact
-    {
-        $contact = new Contact();
-        $contact->setCreatedAt(new \DateTimeImmutable());
-
-        return $contact;
-    }
-
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -37,4 +29,4 @@ class ContactCrudController extends AbstractCrudController
             DateTimeField::new('createdAt', 'Date')->hideOnForm(),
         ];
     }
-}
+} 
