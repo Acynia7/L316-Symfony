@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1>Derniers articles</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
+{% if posts is not empty %}
     <ul>
-        <li>Your controller at <code>C:/wamp64/www/sites/Projet/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/sites/Projet/templates/home/index.html.twig</code></li>
+        {% for post in posts %}
+            <li>
+                <a href="{{ path('app_post_show', {'slug': post.slug}) }}">
+                    {{ post.title }}
+                </a>
+                <p>{{ post.content|striptags|slice(0, 150) ~ '...' }}</p>
+            </li>
+        {% endfor %}
     </ul>
-</div>
+{% else %}
+    <p>Aucun article publie pour le moment.</p>
+{% endif %}
 {% endblock %}
