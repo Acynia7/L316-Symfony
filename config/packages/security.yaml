@@ -33,6 +33,10 @@ security:
 
     # Controle d'acces : seuls les ROLE_ADMIN accedent au backoffice
     access_control:
+        - { path: ^/$, roles: PUBLIC_ACCESS }
+
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+
         - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
