@@ -24,15 +24,15 @@ class RegistrationFormType extends AbstractType
                     new Length(
                         min: 3,
                         max: 255,
-                        minMessage: 'Votre pseudo doit contenir au moins {{ limit }} caracteres.',
-                        maxMessage: 'Votre pseudo ne peut pas depasser {{ limit }} caracteres.',
+                        minMessage: 'Votre pseudo doit contenir au moins {{ limit }} caractères.',
+                        maxMessage: 'Votre pseudo ne peut pas dépasser {{ limit }} caractères.',
                     ),
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez entrer votre email.'),
+                    new NotBlank(message: 'Veuillez entrer votre mail.'),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                     new Length(
                         min: 6,
                         max: 4096,
-                        minMessage: 'Votre mot de passe doit contenir au moins {{ limit }} caracteres.',
+                        minMessage: 'Votre mot de passe doit contenir au moins {{ limit }} caractères.',
                     ),
                 ],
             ])
