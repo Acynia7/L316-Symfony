@@ -14,7 +14,7 @@ class CommentType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'label' => 'Votre commentaire',
-                'attr' => ['rows' => 5],
+                'attr' => ['rows' => 3],
             ])
         ;
     }
@@ -22,7 +22,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'attr' => ['class' => 'comment-form'],
         ]);
     }
 }

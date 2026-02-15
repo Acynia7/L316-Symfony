@@ -3,19 +3,27 @@
 {% block title %}Commentaires{% endblock %}
 
 {% block body %}
-<h1>{{ post.title }}</h1>
-<p>{{ post.content|raw }}</p>
+
+<div class="c-title">
+    <h1>Titre du post : <span class="c-span--blue">{{ post.title }}</span></h1>
+</div>
+
+<div class="c-content">
+    <p>{{ post.content|raw }}</p>
+</div>
 
 <hr>
+<div class="c-subtitle">
+    <h2>Commentaires</h2>
+</div>
 
-<h2>Commentaires</h2>
 {% for comment in comments %}
     <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
         <strong>{{ comment.author.pseudo }}</strong> <small>le {{ comment.createdAt|date('d/m/Y H:i') }}</small>
         <p>{{ comment.content }}</p>
         <form method="post" style="display:inline">
             <input type="hidden" name="report_comment_id" value="{{ comment.id }}">
-            <button type="submit" onclick="return confirm('Signaler ce commentaire ?')">Signaler</button>
+            <button type="submit" class="comment-warn" onclick="return confirm('Signaler ce commentaire ?')">Signaler</button>
         </form>
     </div>
 {% else %}
@@ -24,7 +32,9 @@
 
 <hr>
 {% if app.user %}
-    <h3>Ajouter un commentaire</h3>
+    <div class="c-subtitle">
+        <h3>Ajouter un commentaire</h3>
+    </div>
     {{ form_start(comment_form) }}
         {{ form_widget(comment_form) }}
         <button class="btn btn-outline-danger btn-sm" type="submit">Envoyer le commentaire</button>

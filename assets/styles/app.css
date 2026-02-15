@@ -7,6 +7,7 @@
     --white: #fff;
     --font-size: 1rem;
     --title-font-size:1.5rem;
+    --subtitle-font-size:1.25rem;
 }
 
 /* Container */
@@ -64,6 +65,11 @@ body,
     font-size: var(--title-font-size);
 }
 
+.c-subtitle
+{
+    font-size: var(--subtitle-font-size);
+}
+
 .c-list
 {
     display: flex;
@@ -102,6 +108,11 @@ body,
 .c-link:hover
 {
     color: var(--secondary);
+}
+
+.c-span--blue
+{
+    color: var(--primary);
 }
 
 /* Navigation */
@@ -232,3 +243,66 @@ body,
     font-size: 20px;
     margin-top: 10px;
 }
+
+/* Comment */
+
+.comment-form>button,
+.comment-warn
+{
+    text-align: center;
+    padding: 0.7em; 
+    background: var(--primary); 
+    color: var(--white); 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 1em;
+    transition: all .5s;
+    margin-top: 10px;
+}
+
+.comment-form>button:hover,
+.comment-warn:hover
+{
+    background: var(--secondary);
+}
+
+.comment-form>div
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-form>div>label
+{
+    margin-top: 10px;
+}
+
+.comment-form>div>textarea
+{
+    margin-top: 10px;
+    max-width: 30%;
+    resize: none;
+}
+
+/* Flash messages */
+.flash {
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.flash-success {
+    background: #28a745;
+}
+.flash-warning {
+    background: #ff8800;
+}
+.flash-error,
+.flash-danger {
+    background: #dc3545;
+}
+.flash-info {
+    background: #17a2b8;
+}
+
