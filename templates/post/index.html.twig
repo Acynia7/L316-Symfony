@@ -5,19 +5,22 @@
 {% block body %}
 <h1>Articles publiés</h1>
 
+<div class="posts">
 {% if posts is not empty %}
-    <ul>
+    <ul class='c-list'>
         {% for post in posts %}
-            <li>
-                <a href="{{ path('app_post_show', {'slug': post.slug}) }}">
+            <li class='post'>
+                <a class='post--title' href="{{ path('app_post_show', {'slug': post.slug}) }}">
                     {{ post.title }}
                 </a>
-                <p>{{ post.content|striptags|slice(0, 150) ~ '...' }}</p>
+                <p class='post--content'>{{ post.content|striptags|slice(0, 150) ~ '...' }}</p>
             </li>
         {% endfor %}
     </ul>
 {% else %}
     <p>Aucun article publié pour le moment.</p>
 {% endif %}
+
+</div>
 
 {% endblock %}

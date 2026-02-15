@@ -3,21 +3,28 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<h1>Derniers articles</h1>
+<div class="o-container o-container--centered">
+    <div class="c-title">
+        <h1>Derniers articles</h1>
+    </div>
 
-{% if posts is not empty %}
-    <ul>
-        {% for post in posts %}
-            <li>
-                <a href="{{ path('app_post_show', {'slug': post.slug}) }}">
-                    {{ post.title }}
-                </a>
-                <p>{{ post.content|striptags|slice(0, 150) ~ '...' }}</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucun article publie pour le moment.</p>
-{% endif %}
+    <div class='posts'>
+        {% if posts is not empty %}
+            <ul class='c-list'>
+                {% for post in posts %}
+                    <li class='post'>
+                        <a class='post--title' href="{{ path('app_post_show', {'slug': post.slug}) }}">
+                            {{ post.title }}
+                        </a>
+                        <p class='post--content'>{{ post.content|striptags|slice(0, 150) ~ '...' }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun article publie pour le moment.</p>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}
  

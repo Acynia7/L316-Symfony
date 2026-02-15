@@ -4,33 +4,43 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="stylesheet" href="../assets/styles/app.css">
         {% block stylesheets %}
         {% endblock %}
-        <style>
-            :root { color-scheme: light; }
-            body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-            .site-nav { display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 1.5rem; background: #0f172a; }
-            .site-nav a { color: #e2e8f0; text-decoration: none; font-weight: 600; }
-            .site-nav a:hover { color: #ffffff; text-decoration: underline; }
-            .page-content { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
-        </style>
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        <nav class="site-nav">
-            <a href="{{ path('app_home') }}">Accueil</a>
-            <a href="{{ path('app_post') }}">Posts</a>
-            <a href="{{ path('app_contact') }}">Contact</a>
-            <a href="{{ path('app_about') }}">A propos</a>
-            {% if app.user %}
-                <a href="{{ path('app_logout') }}">Deconnexion</a>
-            {% else %}
-                <a href="{{ path('app_login') }}">Connexion</a>
-            {% endif %}
-        </nav>
+        <header>
+            <nav class="site-nav" data-controller="navbar">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <a href="{{ path('app_post') }}">Posts</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+                <a href="{{ path('app_about') }}">A propos</a>
+                {% if app.user %}
+                    <a href="{{ path('admin') }}">Dashboard</a>
+                    <a href="{{ path('app_logout') }}">Deconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}">Connexion</a>
+                {% endif %}
+            </nav>
+            <div class="hero">
+                <div class="hero--content">
+                    <div class="c-title">
+                        <h1>Site Symfony L316</h1>
+                    </div>
+                    <ul class="c-list">
+                        <li>Safiya Jaouahir</li>
+                        <li>Aurelien Piotte</li>
+                        <li>Nathan Saccol</li>
+                        <li>Emilie Valentin</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        
         <main class="page-content">
             {% block body %}{% endblock %}
         </main>
