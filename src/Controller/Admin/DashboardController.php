@@ -33,5 +33,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaires', 'fa fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class);
         yield MenuItem::linkToCrud('Messages contact', 'fa fa-envelope', Contact::class);
+        yield MenuItem::linkToRoute('Retour au site', 'fa fa-arrow-left', 'app_home');
     }
 }
